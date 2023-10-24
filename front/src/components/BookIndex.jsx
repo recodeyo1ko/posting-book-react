@@ -1,6 +1,6 @@
 import React from "react";
 
-export const BookIndex = () => {
+export const BookIndex = ({ books }) => {
   return (
     <div>
       <h1>Books</h1>
@@ -16,13 +16,15 @@ export const BookIndex = () => {
         </thead>
 
         <tbody>
-          <tr>
-            <td>title</td>
-            <td>body</td>
-            <td>Show</td>
-            <td>Edit</td>
-            <td>Destroy</td>
-          </tr>
+          {books.map((book) => (
+            <tr key={book.id}>
+              <td>{book.title}</td>
+              <td>{book.body}</td>
+              <td>Show</td>
+              <td>Edit</td>
+              <td>Destroy</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
