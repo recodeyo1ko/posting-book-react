@@ -24,7 +24,7 @@ export const BookIndex = ({ books, onShow, onEdit, onDelete }) => {
                 <button onClick={() => onShow(book)}>Show</button>
               </td>
               <td>
-                <button onClick={() => onEdit(book.id)}>Edit</button>
+                <button onClick={() => onEdit(book)}>Edit</button>
               </td>
               <td>
                 <button onClick={() => onDelete(book.id)}>Delete</button>
