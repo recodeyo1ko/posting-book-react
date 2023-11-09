@@ -23,15 +23,23 @@ const BookEditModal = ({ book, onClose, onSave }) => {
     <div className="modal">
       <h2>編集</h2>
       <form className="modal-content" onSubmit={handleSubmit}>
-        <label htmlFor="title">Title:</label>
-        <input
-          type="text"
-          name="title"
-          value={editedBook.title}
-          onChange={handleChange}
-        />
-        <label htmlFor="body">Body:</label>
-        <textarea name="body" value={editedBook.body} onChange={handleChange} />
+        <div className="field">
+          <label htmlFor="title">Title:</label>
+          <input
+            type="text"
+            name="title"
+            value={editedBook.title}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="field">
+          <label htmlFor="body">Body:</label>
+          <textarea
+            name="body"
+            value={editedBook.body}
+            onChange={handleChange}
+          />
+        </div>
         <button type="submit">Save</button>
         <button type="button" onClick={onClose}>
           Close
