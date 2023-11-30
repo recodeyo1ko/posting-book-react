@@ -25,6 +25,7 @@ const BookEditModal = ({ book, onClose, onSave }) => {
       <form className="modal-content" onSubmit={handleSubmit}>
         <div className="field">
           <label htmlFor="title">Title:</label>
+          <br />
           <input
             type="text"
             name="title"
@@ -34,6 +35,8 @@ const BookEditModal = ({ book, onClose, onSave }) => {
         </div>
         <div className="field">
           <label htmlFor="body">Body:</label>
+          <br />
+
           <textarea
             name="body"
             value={editedBook.body}

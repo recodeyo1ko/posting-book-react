@@ -36,6 +36,8 @@ export const Form = ({ book, setBook, books, setBooks }) => {
       <h2>New book</h2>
       <div className="field">
         <label>Title</label>
+        <br />
+
         <input
           type="text"
           name="title"
@@ -46,6 +48,7 @@ export const Form = ({ book, setBook, books, setBooks }) => {
 
       <div className="field">
         <label>Body</label>
+        <br />
         <textarea name="body" value={book.body} onChange={onChangeBody} />
       </div>
 

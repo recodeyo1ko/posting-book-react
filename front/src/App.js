@@ -8,24 +8,33 @@ import BookEditModal from "./components/BookEditModal";
 function App() {
   const [book, setBook] = useState({ title: "", body: "" });
   const [books, setBooks] = useState([]);
-  const [selectedBook, setSelectedBook] = useState(null);
+  const [selectedShowBook, setSelectedShowBook] = useState(null);
+  const [selectedEditBook, setSelectedEditBook] = useState(null);
   const [isShowModalOpen, setIsShowModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const showModal = (book) => {
-    setSelectedBook(book);
+    setIsEditModalOpen(false);
+    setSelectedEditBook(null);
+    setSelectedShowBook(book);
     setIsShowModalOpen(true);
   };
 
   const editModal = (book) => {
-    setSelectedBook(book);
+    setIsShowModalOpen(false);
+    setSelectedShowBook(null);
+    setSelectedEditBook(book);
     setIsEditModalOpen(true);
   };
 
-  const closeModal = () => {
+  const closeShowModal = () => {
     setIsShowModalOpen(false);
+    setSelectedShowBook(null);
+  };
+
+  const closeEditModal = () => {
     setIsEditModalOpen(false);
-    setSelectedBook(null);
+    setSelectedEditBook(null);
   };
 
   const deleteBook = (id) => {
@@ -37,7 +46,7 @@ function App() {
       book.id === updatedBook.id ? updatedBook : book
     );
     setBooks(updatedBooks);
-    closeModal();
+    closeEditModal();
   };
 
   return (
@@ -49,13 +58,13 @@ function App() {
         onDelete={deleteBook}
       />
       <Form book={book} setBook={setBook} books={books} setBooks={setBooks} />
-      {isShowModalOpen && (
-        <BookModal book={selectedBook} onClose={closeModal} />
+      {isShowModalOpen && !isEditModalOpen && (
+        <BookModal book={selectedShowBook} onClose={closeShowModal} />
       )}
-      {isEditModalOpen && (
+      {isEditModalOpen && !isShowModalOpen && (
         <BookEditModal
-          book={selectedBook}
-          onClose={closeModal}
+          book={selectedEditBook}
+          onClose={closeEditModal}
           onSave={updateBook}
         />
       )}
