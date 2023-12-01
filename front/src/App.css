@@ -1,0 +1,15 @@
+.App {
+  position: relative;
+}
+
+.modal {
+  position: absolute;
+  z-index: 1;
+  top: 30%;
+  left: 15%;
+  width: 50%;
+  height: 40%;
+  background-color: antiquewhite;
+  padding: 5%;
+  box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.5);
+}
