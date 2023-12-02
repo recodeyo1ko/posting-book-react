@@ -1,7 +1,6 @@
 import React from "react";
 
 interface Book {
-  id?: number;
   title: string;
   body: string;
 }
@@ -9,12 +8,9 @@ interface Book {
 interface FormProps {
   book: Book;
   setBook: React.Dispatch<React.SetStateAction<Book>>;
-
-  books: Book[];
-  setBooks: React.Dispatch<React.SetStateAction<Book[]>>;
 }
 
-const Form: React.FC<FormProps> = ({ book, setBook, books, setBooks }) => {
+const Form: React.FC<FormProps> = ({ book, setBook }) => {
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBook({ ...book, title: e.target.value });
   };
@@ -23,11 +19,8 @@ const Form: React.FC<FormProps> = ({ book, setBook, books, setBooks }) => {
     setBook({ ...book, body: e.target.value });
   };
 
-  const onSubmitBook = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    if (book.title === "" || book.body === "") return;
-    setBooks([...books, book]);
-    setBook({ title: "", body: "" });
+  const onSubmitBook = () => {
+    console.log(book);
   };
 
   return (
