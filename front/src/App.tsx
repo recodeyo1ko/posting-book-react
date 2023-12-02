@@ -9,9 +9,11 @@ interface Book {
 
 function App() {
   const [book, setBook] = useState<Book>({ title: "", body: "" });
+  const [books, setBooks] = useState<Book[]>([]);
+
   return (
     <div className="App">
-      <Form book={book} setBook={setBook} />
+      <Form book={book} setBook={setBook} books={books} setBooks={setBooks} />
     </div>
   );
 }
