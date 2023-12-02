@@ -26,7 +26,14 @@ const Form: React.FC<FormProps> = ({ book, setBook, books, setBooks }) => {
   const onSubmitBook = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (book.title === "" || book.body === "") return;
-    setBooks([...books, book]);
+    setBooks([
+      ...books,
+      {
+        id: books.length + 1,
+        title: book.title,
+        body: book.body,
+      },
+    ]);
     setBook({ title: "", body: "" });
   };
 
