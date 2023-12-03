@@ -4,6 +4,7 @@ import Form from "./components/Form";
 import BookIndex from "./components/BookIndex";
 import BookShowModal from "./components/BookShowModal";
 import BookEditModal from "./components/BookEditModal";
+import { on } from "events";
 
 interface Book {
   id?: number;
@@ -14,10 +15,10 @@ interface Book {
 function App() {
   const [book, setBook] = useState<Book>({ title: "", body: "" });
   const [books, setBooks] = useState<Book[]>([]);
-  const [isShowBookShowModal, setIsShowBookShowModal] =
+  const [isShowBookShowModalOpen, setIsShowBookShowModalOpen] =
     useState<boolean>(false);
   const [selectedShowBook, setSelectedShowBook] = useState<Book>({} as Book);
-  const [isShowBookEditModal, setIsShowBookEditModal] =
+  const [isShowBookEditModalOpen, setIsShowBookEditModalOpen] =
     useState<boolean>(false);
   const [selectedEditBook, setSelectedEditBook] = useState<Book>({} as Book);
 
@@ -27,12 +28,14 @@ function App() {
   };
 
   const onShowBookShowModal = (book: Book) => {
-    setIsShowBookShowModal(true);
+    setIsShowBookEditModalOpen(false);
+    setIsShowBookShowModalOpen(true);
     setSelectedShowBook(book);
   };
 
   const onShowBookEditModal = (book: Book) => {
-    setIsShowBookEditModal(true);
+    setIsShowBookShowModalOpen(false);
+    setIsShowBookEditModalOpen(true);
     setSelectedEditBook(book);
   };
 
@@ -42,12 +45,12 @@ function App() {
   };
 
   const onCloseBookShowModal = () => {
-    setIsShowBookShowModal(false);
+    setIsShowBookShowModalOpen(false);
     setSelectedShowBook({} as Book);
   };
 
   const onCloseBookEditModal = () => {
-    setIsShowBookEditModal(false);
+    setIsShowBookEditModalOpen(false);
     setSelectedEditBook({} as Book);
   };
 
@@ -64,14 +67,14 @@ function App() {
       />
       <Form book={book} setBook={setBook} books={books} setBooks={setBooks} />
 
-      {isShowBookShowModal && (
+      {isShowBookShowModalOpen && !isShowBookEditModalOpen && (
         <BookShowModal
           book={selectedShowBook}
           onCloseBookShowModal={onCloseBookShowModal}
         />
       )}
 
-      {isShowBookEditModal && (
+      {isShowBookEditModalOpen && !isShowBookShowModalOpen && (
         <BookEditModal
           book={selectedEditBook}
           onCloseBookEditModal={onCloseBookEditModal}
