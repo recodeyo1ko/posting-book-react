@@ -36,6 +36,11 @@ function App() {
     setSelectedEditBook(book);
   };
 
+  const onUpdateBook = (book: Book) => {
+    const updatedBooks = books.map((b) => (b.id === book.id ? book : b));
+    setBooks(updatedBooks);
+  };
+
   const onCloseBookShowModal = () => {
     setIsShowBookShowModal(false);
     setSelectedShowBook({} as Book);
@@ -70,6 +75,7 @@ function App() {
         <BookEditModal
           book={selectedEditBook}
           onCloseBookEditModal={onCloseBookEditModal}
+          onUpdateBook={onUpdateBook}
         />
       )}
     </div>
