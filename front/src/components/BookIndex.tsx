@@ -13,7 +13,8 @@ interface BookIndexProps {
   books: Book[];
   setBooks: React.Dispatch<React.SetStateAction<Book[]>>;
 
-  onShowBookModal: (book: Book) => void;
+  onShowBookShowModal: (book: Book) => void;
+  onShowBookEditModal: (book: Book) => void;
   onDeleteBook: (id: number) => void;
 }
 
@@ -22,7 +23,8 @@ const BookIndex: React.FC<BookIndexProps> = ({
   setBook,
   books,
   setBooks,
-  onShowBookModal,
+  onShowBookShowModal,
+  onShowBookEditModal,
   onDeleteBook,
 }) => {
   return (
@@ -45,10 +47,10 @@ const BookIndex: React.FC<BookIndexProps> = ({
               <td>{book.title}</td>
               <td>{book.body}</td>
               <td>
-                <button onClick={() => onShowBookModal(book)}>Show</button>
+                <button onClick={() => onShowBookShowModal(book)}>Show</button>
               </td>
               <td>
-                <button>Edit</button>
+                <button onClick={() => onShowBookEditModal(book)}>Edit</button>
               </td>
               <td>
                 <button onClick={() => onDeleteBook(book.id!)}>Delete</button>
