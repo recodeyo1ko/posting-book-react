@@ -12,6 +12,8 @@ interface BookIndexProps {
 
   books: Book[];
   setBooks: React.Dispatch<React.SetStateAction<Book[]>>;
+
+  onDeleteBook: (id: number) => void;
 }
 
 const BookIndex: React.FC<BookIndexProps> = ({
@@ -19,6 +21,7 @@ const BookIndex: React.FC<BookIndexProps> = ({
   setBook,
   books,
   setBooks,
+  onDeleteBook,
 }) => {
   return (
     <div>
@@ -46,7 +49,7 @@ const BookIndex: React.FC<BookIndexProps> = ({
                 <button>Edit</button>
               </td>
               <td>
-                <button>Delete</button>
+                <button onClick={() => onDeleteBook(book.id!)}>Delete</button>
               </td>
             </tr>
           ))}
