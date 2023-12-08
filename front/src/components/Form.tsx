@@ -1,25 +1,31 @@
 import React from "react";
 
-export const Form = ({ book, setBook, books, setBooks }) => {
-  const onChangeTitle = (e) => {
-    setBook({
-      ...book,
-      title: e.target.value,
-    });
+interface Book {
+  id?: number;
+  title: string;
+  body: string;
+}
+
+interface FormProps {
+  book: Book;
+  setBook: React.Dispatch<React.SetStateAction<Book>>;
+
+  books: Book[];
+  setBooks: React.Dispatch<React.SetStateAction<Book[]>>;
+}
+
+const Form: React.FC<FormProps> = ({ book, setBook, books, setBooks }) => {
+  const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setBook({ ...book, title: e.target.value });
   };
 
-  const onChangeBody = (e) => {
-    setBook({
-      ...book,
-      body: e.target.value,
-    });
+  const onChangeBody = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setBook({ ...book, body: e.target.value });
   };
 
-  const onSubmitBook = (e) => {
+  const onSubmitBook = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
     if (book.title === "" || book.body === "") return;
-
     setBooks([
       ...books,
       {
@@ -58,3 +64,5 @@ export const Form = ({ book, setBook, books, setBooks }) => {
     </div>
   );
 };
+
+export default Form;
